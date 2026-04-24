@@ -1,0 +1,137 @@
+[
+  {
+    "beginRendering": {
+      "surfaceId": "traiff-selection-surface",
+      "root": "root"
+    }
+  },
+  {
+    "surfaceUpdate": {
+      "surfaceId": "traiff-selection-surface",
+      "components": [
+        {
+          "id": "root",
+          "component": {
+            "Card": {
+              "child": "cardContent"
+            }
+          }
+        },
+        {
+          "id": "cardContent",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "policyDropdown",
+                  "showDetailsButton",
+                  "filterTextField",
+                  "filterButton"
+                ]
+              },
+              "distribution": "start",
+              "alignment": "stretch"
+            }
+          }
+        },
+        {
+          "id": "policyDropdown",
+          "component": {
+            "MultipleChoice": {
+              "selections": {
+                "path": "/form/dropdownSelections"
+              },
+              "filterable": true,
+              "placeholder": "Select a policy...",
+              "options": [
+                {% for item in items %}
+                {
+                  "label": {
+                    "literalString": "{{ item.document_id }}"
+                  },
+                  "value": "{{ item.document_id }}"
+                }{% if not loop.last %},{% endif %}
+                {% endfor %}
+              ],
+              "maxAllowedSelections": 1
+            }
+          }
+        },
+        {
+          "id": "showDetailsButton",
+          "component": {
+            "Button": {
+              "child": "showDetailsButtonText",
+              "action": {
+                "name": "show_details",
+                "context": [
+                  {
+                    "key": "selected_policies",
+                    "value": {
+                      "path": "/form/dropdownSelections"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "showDetailsButtonText",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Show policy details"
+              },
+              "usageHint": "body"
+            }
+          }
+        },
+        {
+          "id": "filterTextField",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "For further filtering"
+              },
+              "text": {
+                "path": "/form/filterText"
+              },
+              "textFieldType": "shortText"
+            }
+          }
+        },
+        {
+          "id": "filterButton",
+          "component": {
+            "Button": {
+              "child": "filterButtonText",
+              "action": {
+                "name": "filter_policies",
+                "context": [
+                  {
+                    "key": "filter_query",
+                    "value": {
+                      "path": "/form/filterText"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "filterButtonText",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Filter"
+              },
+              "usageHint": "body"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

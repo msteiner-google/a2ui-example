@@ -1,0 +1,16 @@
+[
+  {
+    "surfaceUpdate": {
+      "surfaceId": "demo_surface",
+      "components": [
+        { "id": "result_text", "component": { "Text": { "text": { "literalString": "Selection received!" } } } },
+        { "id": "restart_text", "component": { "Text": { "text": { "literalString": "Try again" } } } },
+        { "id": "restart_btn", "component": { "Button": { "child": "restart_text", "action": { "name": "show_dropdown" } } } },
+        { "id": "result_layout", "component": { "Column": { "children": { "explicitList": ["result_text", "restart_btn"] } } } }
+      ]
+    }
+  },
+  {
+    "beginRendering": { "surfaceId": "demo_surface", "root": "result_layout" }
+  }
+]

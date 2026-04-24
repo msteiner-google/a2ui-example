@@ -1,0 +1,29 @@
+<div class="chat-container">
+  <div class="message-list">
+    <div *ngFor="let msg of chatService.messages()" [ngClass]="['message', msg.role]">
+      <div class="bubble">
+        <div *ngIf="msg.text" [innerHTML]="msg.text | markdown"></div>
+        <div *ngIf="msg.surfaceId" class="a2ui-surface-wrapper">
+          <a2ui-surface [surfaceId]="msg.surfaceId"></a2ui-surface>
+        </div>
+      </div>
+    </div>
+    <!-- Loading Indicator Bubble -->
+    <div *ngIf="chatService.isLoading()" class="message agent">
+      <div class="bubble spinner-bubble">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input
+      type="text"
+      [(ngModel)]="userInput"
+      (keyup.enter)="sendMessage()"
+      placeholder="Type a message (try 'show me a form')..."
+      [disabled]="chatService.isLoading()"
+    />
+    <button (click)="sendMessage()" [disabled]="chatService.isLoading()">Send</button>
+  </div>
+</div>

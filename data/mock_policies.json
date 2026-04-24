@@ -1,0 +1,242 @@
+[
+    {
+        "id": "Standard Homeowners Policy (HO-3)",
+        "description": "A comprehensive homeowners insurance policy that provides coverage for the dwelling on an 'open perils' basis, meaning all causes of loss are covered unless specifically excluded. It also includes personal property coverage on a 'named perils' basis, protecting your belongings against fire, lightning, windstorm, hail, explosion, riot, aircraft, vehicles, smoke, vandalism, theft, and falling objects. Additionally, the policy provides personal liability protection and medical payments to others if someone is injured on your property."
+    },
+    {
+        "id": "Silver Level Term Life 20-Year",
+        "description": "A fixed-term life insurance policy designed to provide a death benefit of $500,000 to beneficiaries if the insured passes away within the twenty-year coverage period. This policy features level premiums, meaning the monthly cost remains the same throughout the entire duration. It is ideal for young families looking to cover mortgage payments or educational expenses during their peak financial responsibility years. The policy also includes an optional accelerated death benefit rider for terminal illness diagnosis."
+    },
+    {
+        "id": "Executive Comprehensive Auto Guard",
+        "description": "Premium automobile insurance that goes beyond basic liability. This policy includes collision and comprehensive coverage with a low deductible, ensuring repair or replacement of your vehicle after accidents, theft, vandalism, or weather-related damage. It features 'new car replacement' coverage for vehicles under two years old and provides a generous rental reimbursement limit. Roadside assistance and glass repair are included without additional premiums, along with higher-than-standard limits for bodily injury and property damage liability."
+    },
+    {
+        "id": "Global Nomad Travel Shield",
+        "description": "An extensive travel insurance plan tailored for international travelers and digital nomads. It provides up to $1,000,000 in emergency medical evacuation and repatriation coverage, alongside primary medical coverage for accidents and sudden illnesses occurring outside your home country. The plan includes trip cancellation and interruption benefits for a wide range of reasons, including unforeseen work requirements or family emergencies. Baggage delay, lost passport assistance, and 24/7 concierge services are also part of this global protection package."
+    },
+    {
+        "id": "SecureBiz Cyber Liability Plus",
+        "description": "A specialized commercial insurance policy designed to protect small to medium-sized enterprises from the financial impact of data breaches and cyberattacks. This coverage includes first-party costs such as forensic investigations, legal fees, notification expenses for affected customers, and credit monitoring services. It also provides third-party liability protection for lawsuits arising from lost data or privacy violations. Business interruption coverage is included to offset lost income during system outages caused by a ransomware attack or security breach."
+    },
+    {
+        "id": "Premier Pet Health Platinum",
+        "description": "A top-tier pet insurance plan for cats and dogs that covers 90% of veterinary bills for accidents, new illnesses, and chronic conditions such as diabetes or arthritis. Unlike basic plans, the Platinum tier includes coverage for hereditary and congenital conditions, dental illnesses, and behavioral therapy. There are no lifetime payout limits, and the annual deductible is customizable to fit your budget. The policy also covers diagnostic tests, surgeries, hospitalizations, and prescription medications, ensuring your pet receives the best possible care without financial strain."
+    },
+    {
+        "id": "Professional Med-Mal Excellence",
+        "description": "Medical malpractice insurance specifically formulated for specialist physicians. This claims-made policy provides robust defense coverage for allegations of professional negligence, including legal fees, expert witness costs, and court expenses regardless of the outcome. It features high per-occurrence and aggregate limits to protect personal and practice assets. The policy includes a 'consent to settle' clause, ensuring that no settlement is reached without the physician's express approval, thereby protecting their professional reputation."
+    },
+    {
+        "id": "Artisan Contractor General Liability",
+        "description": "A foundational insurance policy for independent contractors and small construction firms. It protects against third-party claims of bodily injury or property damage arising from your business operations, whether on-site or after a project is completed (products-completed operations). This coverage is essential for obtaining municipal permits and winning contracts with larger developers. It includes coverage for personal and advertising injury, as well as medical payments for minor accidents occurring at your place of business or job site."
+    },
+    {
+        "id": "Lakeside Secondary Residence Protection",
+        "description": "A niche insurance product designed for seasonal or secondary homes, such as cabins or vacation rentals. Because these properties are often vacant for long periods, this policy addresses specific risks like burst pipes, undetected vandalism, and liability for guests. It offers flexible coverage options for short-term rental activities (e.g., Airbnb/VRBO) which are typically excluded from standard homeowners policies. The dwelling is insured at replacement cost, and specialized riders are available for docks, piers, and small watercraft."
+    },
+    {
+        "id": "Income Protector Disability Series",
+        "description": "A long-term disability insurance policy that safeguards your most valuable asset: your ability to earn an income. In the event of a total or partial disability that prevents you from working in your 'own occupation,' this policy provides a monthly benefit equal to 60% of your pre-disability earnings. It features a cost-of-living adjustment (COLA) rider to ensure benefits keep pace with inflation and a partial disability benefit that allows you to return to work part-time while still receiving a portion of your insurance payment. The benefit period extends until age 65."
+    },
+    {
+        "id": "High-Value Coastal Homeowners Guard",
+        "description": "Specialized protection for luxury properties located in high-risk coastal zones prone to hurricanes and storm surges. This policy includes enhanced windstorm coverage and flood insurance integration to ensure comprehensive protection against maritime elements. It also covers high-end exterior features like seawalls, docks, and infinity pools."
+    },
+    {
+        "id": "Historic Property Restoration Policy",
+        "description": "Designed for homes with historical significance, this policy provides replacement cost coverage using period-accurate materials and craftsmanship. It covers the additional expenses required to meet modern building codes during restoration while preserving the architectural integrity of the structure. Specialized appraisal services are included to accurately value unique antique fixtures."
+    },
+    {
+        "id": "Eco-Friendly Green Home Rider",
+        "description": "An add-on for homeowners who have invested in sustainable technologies like solar arrays, geothermal systems, and rainwater harvesting. In the event of a loss, the policy pays for the replacement of damaged materials with certified eco-friendly alternatives. It also covers the loss of income from net-metering energy sales if the solar system is offline due to a covered peril."
+    },
+    {
+        "id": "Condominium Unit Owners Plus (HO-6)",
+        "description": "Tailored for condo owners, this coverage focuses on 'walls-in' protection and personal property within the unit. It includes significant loss assessment coverage to protect the owner from their share of community-wide insurance deductibles or capital repairs. Personal liability and medical payments to guests are also standard features."
+    },
+    {
+        "id": "Modern Renter's Liability & Tech Shield",
+        "description": "A comprehensive renters policy with an emphasis on high-value electronics and mobile equipment. It provides replacement cost coverage for laptops, smartphones, and professional camera gear both inside and outside the home. The policy also includes identity theft restoration services and liability coverage for accidents occurring within the rented premises."
+    },
+    {
+        "id": "Classic & Antique Auto Collector's Series",
+        "description": "Agreed-value coverage for vintage and classic automobiles that typically appreciate over time. Unlike standard auto policies, this plan considers the vehicle's rarity, condition, and market demand when determining payouts. It includes specialized claims handling and access to a network of expert restoration shops."
+    },
+    {
+        "id": "Electric Vehicle (EV) Max Protection",
+        "description": "An auto policy specifically designed for the unique needs of electric vehicle owners, including coverage for home charging stations and wall connectors. It features specialized battery degradation protection and roadside assistance that includes on-site mobile charging. Premium discounts are applied for vehicles with advanced autonomous safety features."
+    },
+    {
+        "id": "Rideshare Driver Hybrid Coverage",
+        "description": "Bridging the gap between personal and commercial insurance for drivers on platforms like Uber and Lyft. This policy provides full coverage during the 'Period 1' phase when the app is on but a passenger hasn't been matched. It ensures the driver is never without protection, regardless of their current working status."
+    },
+    {
+        "id": "Young Driver Safety & Savings Plan",
+        "description": "An innovative policy for drivers under 25 that utilizes telematics to reward safe driving habits with significant premium discounts. It includes a parent-teen driving contract and 24/7 accident assistance to provide peace of mind for families. Roadside assistance and minor dent repair are included to keep the vehicle in top condition."
+    },
+    {
+        "id": "Commercial Fleet Operational Guard",
+        "description": "Comprehensive liability and physical damage coverage for businesses operating multiple service vehicles or delivery vans. The policy includes blanket coverage for all employees while operating fleet assets and provides specialized cargo insurance. High-limit umbrella options are available to protect the business from catastrophic multi-vehicle accidents."
+    },
+    {
+        "id": "Whole Life Wealth Accelerator",
+        "description": "A permanent life insurance policy that combines a guaranteed death benefit with a cash value accumulation component. Policyholders can borrow against the cash value for major life expenses while the policy continues to earn dividends. This plan offers lifelong security with premiums that never increase regardless of age or health changes."
+    },
+    {
+        "id": "Adjustable Universal Life Horizon",
+        "description": "A flexible life insurance solution that allows policyholders to adjust their premiums and death benefits as their financial needs evolve. It offers a variety of investment options for the cash value component, allowing for potential market-linked growth. This policy is ideal for individuals seeking a balance between permanent protection and financial flexibility."
+    },
+    {
+        "id": "Key Person Business Continuity Life",
+        "description": "Insurance purchased by a company on the life of a high-value employee whose death would significantly impact operations. The death benefit provides the business with the liquidity needed to recruit a successor or offset lost revenue during a transition. It is an essential component of professional succession planning and corporate risk management."
+    },
+    {
+        "id": "Final Expense & Legacy Support Plan",
+        "description": "A simplified-issue life insurance policy designed to cover the immediate costs associated with funerals and end-of-life expenses. It features a streamlined application process with no medical exam and guaranteed acceptance for most seniors. The death benefit is paid rapidly to beneficiaries to minimize financial stress during a difficult time."
+    },
+    {
+        "id": "Childhood Foundation Life Shield",
+        "description": "A policy designed to provide a head start on financial security for children, featuring guaranteed insurability for life. The premiums are locked in at a very low rate and the policy builds cash value that can be used for future educational needs. It can be transferred to the child upon reaching adulthood, ensuring they always have basic coverage."
+    },
+    {
+        "id": "Special Event Cancellation & Liability",
+        "description": "Comprehensive coverage for weddings, conferences, or festivals against unforeseen cancellations due to weather, illness, or vendor bankruptcy. It includes host liquor liability and protection for event equipment, gifts, and specialized attire. This policy ensures that significant financial investments in a single day are not lost to unexpected circumstances."
+    },
+    {
+        "id": "Blue Water Marine Hull & Cargo",
+        "description": "Specialized insurance for commercial shipping vessels and the cargo they transport across international waters. It covers physical damage to the ship's hull and machinery, as well as liability for environmental damage and collisions. The policy includes 'General Average' protection, a maritime principle for shared losses during emergencies."
+    },
+    {
+        "id": "Agricultural Yield & Equipment Protection",
+        "description": "A robust policy for modern farms that covers crop losses due to drought, flood, or pest infestation. It also provides replacement cost coverage for expensive farm machinery and specialized liability protection for agritourism activities. Livestock mortality coverage and farm dwelling protection are integrated into a single farm-owner package."
+    },
+    {
+        "id": "Film & Media Production Wrap-Up",
+        "description": "An all-in-one insurance solution for film productions, covering cast members, sets, wardrobes, and specialized camera equipment. It includes professional liability for errors and omissions and protects against losses from damaged digital media or film stock. This policy is essential for securing permits and satisfying requirements for location owners and investors."
+    },
+    {
+        "id": "Aviation Physical Damage & Liability",
+        "description": "Broad-spectrum coverage for private and corporate aircraft, protecting against ground and in-flight perils. It includes high-limit liability for passengers and third parties, as well as coverage for specialized avionics and engines. The policy can be tailored for various uses, from recreational flying to commercial charter operations."
+    },
+    {
+        "id": "Executive Health & Wellness Premier",
+        "description": "A high-limit health insurance plan that provides global access to top-tier medical facilities and specialists without referrals. It includes comprehensive annual wellness screenings, genetic testing, and 24/7 access to private health concierges. This plan is designed for individuals who prioritize rapid, high-quality medical intervention regardless of location."
+    },
+    {
+        "id": "Alternative Medicine & Holistic Health",
+        "description": "A health plan focused on integrative medicine, covering treatments like acupuncture, chiropractic care, and naturopathic consultations. It provides a generous allowance for nutritional supplements and wellness retreats not typically covered by standard insurance. This policy supports a proactive, whole-body approach to long-term health and vitality."
+    },
+    {
+        "id": "Family Preventive Dental & Orthodontic",
+        "description": "Comprehensive dental coverage that emphasizes early intervention and pediatric care, including full coverage for braces and aligners. It features two cleanings per year with no out-of-pocket costs and significant discounts on major restorative work. The plan includes a wide network of specialists to ensure convenient access for all family members."
+    },
+    {
+        "id": "Senior Dental & Vision Restoration",
+        "description": "Specially designed for the needs of seniors, this policy offers high reimbursement rates for dentures, implants, and periodontal treatments. It also includes comprehensive vision coverage for cataracts, glaucoma screenings, and premium eyewear. This integrated plan ensures that essential sensory and oral health is maintained throughout the retirement years."
+    },
+    {
+        "id": "Critical Illness & Cancer Recovery",
+        "description": "A supplemental health policy that provides a lump-sum cash payment upon diagnosis of a serious illness like cancer, heart attack, or stroke. The funds can be used for any purpose, including experimental treatments, travel for specialized care, or replacing lost income. This coverage bridges the financial gap that standard medical insurance often leaves behind."
+    },
+    {
+        "id": "Fine Jewelry & Precious Metal Rider",
+        "description": "Dedicated coverage for engagement rings, luxury watches, and heirloom jewelry against theft, loss, and mysterious disappearance. The policy utilizes current appraisals to ensure full replacement value without the need for a deductible. It provides worldwide protection, meaning your items are covered whether you're at home or traveling abroad."
+    },
+    {
+        "id": "Museum-Grade Art & Sculpture Protection",
+        "description": "Specialized insurance for private art collectors and galleries, covering high-value paintings, sculptures, and installations. It includes transit coverage for when pieces are moved for exhibition or restoration and provides protection against accidental damage. The policy features 'pairs and sets' coverage, ensuring the value of a collection is maintained if one piece is lost."
+    },
+    {
+        "id": "Numismatic & Philatelic Collectible Shield",
+        "description": "Tailored for serious collectors of rare coins, stamps, and currency, this policy protects against theft, fire, and water damage. It accounts for the volatile nature of collectible markets by allowing for periodic value adjustments based on expert indices. The coverage extends to items stored in bank vaults or displayed in specialized home security environments."
+    },
+    {
+        "id": "Vintage Wine & Rare Spirits Guard",
+        "description": "Protects private wine cellars and spirits collections from spoilage due to climate control failure, bottle breakage, and theft. It includes specialized valuation for rare vintages and covers the cost of expert appraisal services. This policy is essential for collectors who view their cellar as both a passion and a significant financial investment."
+    },
+    {
+        "id": "Musical Instrument Professional Series",
+        "description": "Comprehensive insurance for professional musicians, covering rare string instruments, grand pianos, and vintage amplifiers. It provides full replacement value and covers the cost of specialized repairs by certified luthiers and technicians. The policy includes 'loss of value' coverage if an instrument's sound or playability is diminished after a repair."
+    },
+    {
+        "id": "Remote Worker Home Office & Cyber",
+        "description": "Designed for the modern workforce, this policy covers professional equipment used in a home office environment that standard homeowners policies might exclude. It includes personal cyber insurance to protect against phishing, identity theft, and home network breaches. The plan also provides liability coverage for business-related visitors to the home."
+    },
+    {
+        "id": "AI Developer Professional Liability",
+        "description": "A niche policy for software engineers and firms developing artificial intelligence, covering errors in algorithms that lead to financial loss or privacy violations. It includes specialized defense for intellectual property disputes and allegations of algorithmic bias. This coverage is critical as the legal landscape for AI-driven technologies continues to evolve."
+    },
+    {
+        "id": "Autonomous Systems Operational Insurance",
+        "description": "Insurance for businesses utilizing autonomous drones, delivery robots, or self-driving warehouse equipment. It covers physical damage to the systems and third-party liability for accidents caused by software or sensor failure. The policy includes cyber-interruption coverage if the control systems are hacked or suffer a service outage."
+    },
+    {
+        "id": "Cryptocurrency & Digital Asset Secure",
+        "description": "Protects digital wallets and exchange accounts from unauthorized access, hacking, and private key loss. It utilizes cold-storage verification and multi-sig requirements to provide a layer of security for high-value crypto investors. This policy offers a unique bridge between traditional finance and the emerging digital asset economy."
+    },
+    {
+        "id": "Bio-Tech Lab & Clinical Trial Guard",
+        "description": "Specialized liability coverage for biotechnology startups engaged in research, development, and clinical trials. It protects against allegations of injury from experimental treatments and covers the loss of sensitive biological materials. The policy is designed to satisfy the rigorous requirements of research partners and regulatory bodies."
+    },
+    {
+        "id": "Micro-Mobility Fleet & User Liability",
+        "description": "Coverage for companies operating shared fleets of electric scooters and bicycles in urban environments. It includes liability for rider accidents and protects the hardware against theft and vandalism. The policy can be integrated directly into the service app to provide per-ride insurance for the end-user."
+    },
+    {
+        "id": "Short-Term Vacation Rental Professional",
+        "description": "A comprehensive policy for property owners who frequently rent their homes on platforms like Airbnb or VRBO. It replaces standard homeowners insurance with a commercial-grade policy that covers guest injuries, property damage by renters, and lost rental income. Specialized protection for amenities like hot tubs and home gyms is also included."
+    },
+    {
+        "id": "Cannabis Industry Operations Shield",
+        "description": "Tailored for the legal cannabis market, this policy covers cultivation, processing, and retail dispensary operations. It includes specialized product liability, crop insurance, and cash-in-transit coverage. The plan is designed to remain compliant with evolving state regulations and banking requirements for the industry."
+    },
+    {
+        "id": "Pet Professional Liability & Bailee",
+        "description": "Essential insurance for dog walkers, groomers, and pet sitters, covering injuries to animals while in their care. It includes 'bailee' coverage for the pets themselves and general liability for accidents occurring at a client's home. The policy provides peace of mind for both the professional and the pet owner."
+    },
+    {
+        "id": "Small Business Identity & Reputation",
+        "description": "Protects small business owners from the financial and PR costs of identity theft or online reputation damage. It covers the cost of professional crisis management firms and legal fees to remove defamatory content or recover stolen credentials. This policy is a vital safeguard for businesses where the owner's personal brand is central to success."
+    },
+    {
+        "id": "Kidnap, Ransom & Global Extortion",
+        "description": "Specialized coverage for corporate executives and humanitarian workers operating in high-risk international territories. It provides access to expert crisis response teams who manage negotiations and logistics during a kidnapping or extortion event. The policy covers ransom payments, lost wages, and long-term psychological support for the victim."
+    },
+    {
+        "id": "Solar Farm Operational & Grid Shield",
+        "description": "Comprehensive insurance for large-scale solar energy installations, covering physical damage to panels, inverters, and tracking systems. It includes business interruption coverage for lost power generation revenue due to weather events or equipment failure. The policy also features liability protection for grid connection and maintenance activities."
+    },
+    {
+        "id": "Data Breach Notification & Forensic",
+        "description": "A standalone policy focused on the immediate costs of a data breach, including IT forensics to identify the source of the leak. It covers the legal requirements for customer notification and provides credit monitoring services for all affected individuals. This plan ensures a rapid, professional response to any security incident."
+    },
+    {
+        "id": "Employee Dishonesty & Crime Bond",
+        "description": "Protects a business from financial losses caused by fraudulent or dishonest acts committed by its own employees. It covers theft of money, securities, and other property, whether committed by an individual or through collusion. This bond is a critical component of internal controls for businesses with multiple staff members handling assets."
+    },
+    {
+        "id": "Intellectual Property Defense & Abatement",
+        "description": "Provides the financial resources needed to defend against patent, trademark, or copyright infringement lawsuits. It also includes 'abatement' coverage, which funds the policyholder's own legal action against others who infringe on their IP. This policy is essential for tech companies and creative agencies whose value is tied to their inventions."
+    },
+    {
+        "id": "Product Recall & Contamination Guard",
+        "description": "Covers the massive costs associated with pulling a defective or contaminated product from the market, including logistics and disposal. It provides coverage for lost profits during the recall period and funds for brand rehabilitation campaigns. This policy is a staple for food manufacturers and consumer electronics companies."
+    },
+    {
+        "id": "Directors & Officers (D&O) Liability",
+        "description": "Protects the personal assets of corporate directors and officers from lawsuits alleging 'wrongful acts' in their management of the company. It covers legal defense costs and settlements arising from shareholder disputes, regulatory investigations, or employment practices. This coverage is essential for attracting and retaining high-quality executive talent."
+    },
+    {
+        "id": "Modular & Prefabricated Home Shield",
+        "description": "A specialized homeowners policy designed for the unique structural and transport risks of modular and manufactured housing. It includes coverage for the home while it is being sited and permanently attached to a foundation. The policy offers replacement cost options that account for the modern construction methods of these homes."
+    },
+    {
+        "id": "Inland Marine Equipment Floater",
+        "description": "Provides broad protection for tools and equipment that are frequently moved between job sites, such as generators, excavators, and surveying gear. Unlike standard property insurance, this 'floater' follows the equipment wherever it goes. It covers theft from vehicles, damage during transit, and accidental drops."
+    },
+    {
+        "id": "Parametric Weather Event Insurance",
+        "description": "An innovative policy that pays out automatically based on objective weather data, such as a specific wind speed or rainfall amount. It eliminates the need for lengthy claims investigations and provides immediate liquidity after a catastrophic event. This is ideal for businesses like resorts or outdoor venues whose revenue is highly weather-dependent."
+    }
+]

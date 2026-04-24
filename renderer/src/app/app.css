@@ -1,0 +1,148 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  font-family: sans-serif;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.message {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+
+.user .bubble {
+  background: #007bff;
+  color: white;
+  border-bottom-right-radius: 2px;
+}
+
+.agent .bubble {
+  background: #e9e9eb;
+  color: black;
+  border-bottom-left-radius: 2px;
+}
+
+/* Markdown Styles inside bubbles */
+.bubble p {
+  margin: 0;
+}
+.bubble p + p {
+  margin-top: 10px;
+}
+.bubble ul, .bubble ol {
+  margin: 5px 0;
+  padding-left: 20px;
+}
+.bubble h1, .bubble h2, .bubble h3, .bubble h4, .bubble h5 {
+  margin: 10px 0 5px 0;
+  line-height: 1.2;
+}
+.bubble h1 { font-size: 1.5em; }
+.bubble h2 { font-size: 1.3em; }
+.bubble h3 { font-size: 1.1em; }
+
+.input-area {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  background: white;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.input-area input:disabled {
+  background: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.input-area button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-area button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.a2ui-surface-wrapper {
+  margin-top: 10px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  min-height: 50px;
+}
+
+/* Spinner Styles */
+.spinner-bubble {
+  padding: 10px 20px !important;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #007bff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ensure A2UI components are visible */
+a2ui-column, a2ui-row, a2ui-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+a2ui-text {
+  display: block;
+  margin: 5px 0;
+  min-height: 1.2em;
+}
+
+a2ui-button {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+button[primary] {
+  background-color: #007bff;
+  color: white;
+}

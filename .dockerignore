@@ -1,0 +1,6 @@
+uv.lock
+.venv/
+.git/
+.adk/
+terraform/
+__pycache__/

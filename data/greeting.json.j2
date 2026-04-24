@@ -1,0 +1,16 @@
+[
+  {
+    "surfaceUpdate": {
+      "surfaceId": "demo_surface",
+      "components": [
+        { "id": "welcome_text", "component": { "Text": { "text": { "literalString": "Click the button below to see the dropdown:" } } } },
+        { "id": "show_dropdown_text", "component": { "Text": { "text": { "literalString": "Show 20-item Dropdown" } } } },
+        { "id": "show_dropdown_btn", "component": { "Button": { "child": "show_dropdown_text", "primary": true, "action": { "name": "show_dropdown" } } } },
+        { "id": "welcome_layout", "component": { "Column": { "children": { "explicitList": ["welcome_text", "show_dropdown_btn"] } } } }
+      ]
+    }
+  },
+  {
+    "beginRendering": { "surfaceId": "demo_surface", "root": "welcome_layout" }
+  }
+]
