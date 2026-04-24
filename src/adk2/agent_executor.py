@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from a2a.server.events import EventQueue
 
 
-class SignalIdunaExampleAgentExecutor(AgentExecutor):
+class A2UIExampleAgentExecutor(AgentExecutor):
     """Insurance Assistant AgentExecutor."""
 
     def __init__(self, agent_card: AgentCard) -> None:

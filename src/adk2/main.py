@@ -11,7 +11,7 @@ from a2a.server.tasks import InMemoryTaskStore
 from a2a.types import AgentCapabilities, AgentCard
 from loguru import logger
 
-from adk2.agent_executor import SignalIdunaExampleAgentExecutor
+from adk2.agent_executor import A2UIExampleAgentExecutor
 
 
 def serve() -> Never:
@@ -26,7 +26,7 @@ def serve() -> Never:
         )
 
         agent_card = AgentCard(
-            name="SignalIduna A2UI example agent.",
+            name="A2UI example agent.",
             description="Demonstrates A2UI capabilities.",
             url=agent_url,
             version="0.0.1",
@@ -40,7 +40,7 @@ def serve() -> Never:
 
         logger.debug("Agent card: {}", agent_card)
 
-        agent_executor = SignalIdunaExampleAgentExecutor(agent_card=agent_card)
+        agent_executor = A2UIExampleAgentExecutor(agent_card=agent_card)
 
         request_handler = DefaultRequestHandler(
             agent_executor=agent_executor,

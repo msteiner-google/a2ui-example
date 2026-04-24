@@ -1,4 +1,4 @@
-# SignalIduna A2UI Example Project
+# A2UI Example Project
 
 This repository demonstrates a full-stack application integrating **Agentic Design Kit (ADK)**, **Agent-to-Agent (A2A)** protocol, and **A2UI** for interactive, AI-driven user interfaces. It features a RAG (Retrieval-Augmented Generation) agent that helps employees find insurance policies using a modern, interactive chat interface.
 
