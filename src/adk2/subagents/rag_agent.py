@@ -4,15 +4,18 @@ from __future__ import annotations
 
 import json
 import textwrap
+import uuid
 from pathlib import Path
 
 import jinja2
 from google.adk.agents import LlmAgent
 from google.adk.agents.callback_context import CallbackContext  # noqa: TC002
 from google.adk.agents.context import Context  # noqa: TC002
+from google.adk.models import LlmRequest, LlmResponse
 from google.adk.tools import FunctionTool
 from google.adk.workflow import Workflow
 from google.genai.types import Content, GenerateContentConfig, Part
+from loguru import logger
 from rapidfuzz import fuzz, process
 
 from adk2.models.rag_model import MockExtractedQuery, MockSearchResult
@@ -28,7 +31,6 @@ _MAX_RESULTS_WITHOUT_UI = 5
 def _load_mock_db() -> list[tuple[str, str]]:
     """Loads the mock database from a JSON file."""
     # Look for the file in the project root's data folder.
-    # We try both relative to the current working directory and relative to this file.
     possible_paths = [
         Path("data/mock_policies.json"),
         Path(__file__).resolve().parents[3] / "data" / "mock_policies.json",
@@ -46,7 +48,7 @@ def _load_mock_db() -> list[tuple[str, str]]:
 
 
 _mock_db: list[tuple[str, str]] = _load_mock_db()
-_SEARCH_THRESHOLD = 30.0
+_SEARCH_THRESHOLD = 60.0
 
 
 def _mock_search_db_function(
@@ -70,6 +72,7 @@ def _mock_search_db_function(
         choices.keys(),
         scorer=fuzz.WRatio,
         score_cutoff=_SEARCH_THRESHOLD,
+        limit=None,
     )
 
     if not results:
@@ -109,24 +112,47 @@ async def _extract_query_function(
             response_schema=MockExtractedQuery,
         ),
     )
-    # The response.text should be a JSON string matching MockExtractedQuery
     return MockExtractedQuery.model_validate_json(response.text)
+
+
+def _maybe_reply_text_or_a2ui_json(node_input: list[MockSearchResult]) -> str:
+    """Formats results as A2UI JSON if many, otherwise as a simple list."""
+    if len(node_input) > _MAX_RESULTS_WITHOUT_UI:
+        # Load and render template
+        template = template_env.get_template("show_dropdown.json.j2")
+        surface_id = f"traiff-selection-surface-{uuid.uuid4().hex[:8]}"
+        rendered_json = template.render(items=node_input, surface_id=surface_id)
+
+        # Create a new content object with the a2ui-json block
+        a2ui_block = f"\n\n<a2ui-json>\n{rendered_json}\n</a2ui-json>"
+        intro_text = textwrap.dedent("""\
+        I found multiple policies. Please select one from the list below or use the
+        filter to narrow down your search.
+        """)
+        return intro_text + a2ui_block
+
+    # Return a simple text list for the LLM to format nicely
+    lines = [f"- {res.document_id}: {res.document_body}" for res in node_input]
+    return "\n".join(lines)
 
 
 _search_db_workflow = Workflow(
     name="search_db_workflow",
-    description="Searches the policies db.",
-    nodes=[_extract_query_function, _mock_search_db_function],
+    description="Searches the policies db and formats the response.",
+    nodes=[
+        _extract_query_function,
+        _mock_search_db_function,
+        _maybe_reply_text_or_a2ui_json,
+    ],
     edges=[
         ("START", _extract_query_function),
         (_extract_query_function, _mock_search_db_function),
+        (_mock_search_db_function, _maybe_reply_text_or_a2ui_json),
     ],
 )
 
 
-async def _run_search_db_workflow(
-    user_input: str, ctx: Context
-) -> list[MockSearchResult]:
+async def _run_search_db_workflow(user_input: str, ctx: Context) -> str:
     """Invokes the search db workflow."""
     return await ctx.run_node(
         node=_search_db_workflow,
@@ -139,67 +165,39 @@ _workflow_tool = FunctionTool(
 )
 
 
-def _find_search_results(session_events: list) -> list[MockSearchResult]:
-    """Finds search results in session events."""
-    for event in reversed(session_events):
-        # Check event.output first (ADK standard for node results)
-        output = getattr(event, "output", None)
-        if output and isinstance(output, list) and output:
-            if all(isinstance(i, MockSearchResult) for i in output):
-                return output
-            if all(isinstance(i, dict) and "document_id" in i for i in output):
-                return [MockSearchResult(**i) for i in output]
+def before_model_callback(
+    callback_context: CallbackContext, llm_request: LlmRequest
+) -> LlmResponse | None:
+    """Consolidated gatekeeper: forces tools and injects UI, skipping LLM."""
+    logger.info("--- before_model_callback ---")
 
-        # Fallback to checking content parts if they exist
-        if (
-            hasattr(event, "content")
-            and event.content
-            and hasattr(event.content, "parts")
-            and event.content.parts
-        ):
-            for part in event.content.parts:
-                data = getattr(part, "data", None)
-                if data and isinstance(data, list) and data:
-                    if all(isinstance(i, MockSearchResult) for i in data):
-                        return data
-                    if all(isinstance(i, dict) and "document_id" in i for i in data):
-                        return [MockSearchResult(**i) for i in data]
-    return []
-
-
-def attach_a2ui_json_callback(callback_context: CallbackContext) -> Content | None:
-    """Attaches A2UI JSON if more than 5 search results are returned."""
-    search_results = _find_search_results(callback_context.session.events)
-
-    if len(search_results) <= _MAX_RESULTS_WITHOUT_UI:
+    if not llm_request.contents:
         return None
 
-    # Load and render template
-    template = template_env.get_template("show_dropdown.json.j2")
-    rendered_json = template.render(items=search_results)
+    # 1. Check if the last event contains <a2ui-json> (SUMMARIZATION PHASE)
+    if callback_context.session.events:
+        last_event = callback_context.session.events[-1]
 
-    # Get the agent's original output (the last event in the session)
-    # If the session is empty or doesn't have content, return None
-    if not callback_context.session.events:
-        return None
+        # Extract text from the event
+        full_text = ""
+        if last_event.content and last_event.content.parts:
+            for p in last_event.content.parts:
+                if p.text:
+                    full_text += p.text
+                elif p.function_response and p.function_response.response:
+                    res = p.function_response.response
+                    if isinstance(res, dict) and "result" in res:
+                        full_text += str(res["result"])
+                    else:
+                        full_text += str(res)
 
-    original_content = callback_context.session.events[-1].content
-    if not original_content:
-        return None
+        if "<a2ui-json>" in full_text:
+            logger.info("Detected <a2ui-json> in last event. Skipping LLM.")
+            return LlmResponse(
+                content=Content(role="model", parts=[Part(text=full_text)])
+            )
 
-    # Create a new content object with the a2ui-json block appended
-    a2ui_block = f"\n\n<a2ui-json>\n{rendered_json}\n</a2ui-json>"
-
-    # Check if the block is already present to avoid infinite loops or double injection
-    full_text = "".join([p.text for p in original_content.parts if p.text])
-    if "<a2ui-json>" in full_text:
-        return None
-
-    # Replace the text with a brief introduction instead of keeping the long list
-    intro_text = "I found multiple policies. Please select one from the list below or use the filter to narrow down your search."
-    new_parts = [Part(text=intro_text + a2ui_block)]
-
-    return Content(role="model", parts=new_parts)
+    return None
 
 
 rag_agent = LlmAgent(
@@ -212,6 +210,6 @@ rag_agent = LlmAgent(
         """,
     ),
     tools=[_workflow_tool],
-    after_agent_callback=[attach_a2ui_json_callback],
+    before_model_callback=before_model_callback,
     mode="chat",
 )

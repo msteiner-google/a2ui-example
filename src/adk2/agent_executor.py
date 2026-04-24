@@ -63,7 +63,7 @@ class SignalIdunaExampleAgentExecutor(AgentExecutor):
             for i, part in enumerate(context.message.parts):
                 if isinstance(part.root, DataPart):
                     if "userAction" in part.root.data:
-                        logger.info(" Part %s: Found a2ui UI ClientEvent payload.", i)
+                        logger.info(" Part {}: Found a2ui UI ClientEvent payload.", i)
                         ui_event_part = part.root.data["userAction"]
                     else:
                         logger.info(f" Part {i}: DataPart (data: {part.root.data})")
@@ -116,24 +116,20 @@ class SignalIdunaExampleAgentExecutor(AgentExecutor):
             role="user", parts=[types.Part.from_text(text=query)]
         )
 
-        last_model_content = ""
+        all_model_contents = []
         async for event in self._runner.run_async(
             user_id="remote_agent",
             session_id=session.id,
             new_message=current_message,
         ):
             if event.content and event.content.role == "model" and event.content.parts:
-                parts_text = "".join(
-                    [part.text for part in event.content.parts if part.text]
-                )
+                parts_text = "".join([
+                    part.text for part in event.content.parts if part.text
+                ])
                 if parts_text:
-                    last_model_content = parts_text
+                    all_model_contents.append(parts_text)
 
-        final_response_content = last_model_content
-        logger.info(
-            "--- AGENT_EXECUTOR: Received raw content: {} ---",
-            final_response_content,
-        )
+        final_response_content = "\n".join(all_model_contents)
 
         try:
             # Use validator from schema manager

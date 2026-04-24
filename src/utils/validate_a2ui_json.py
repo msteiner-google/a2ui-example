@@ -7,9 +7,10 @@ from pathlib import Path
 from a2ui.basic_catalog.provider import BasicCatalog
 from a2ui.schema.common_modifiers import remove_strict_validation
 from a2ui.schema.manager import A2uiSchemaManager
+from loguru import logger
 
 
-def validate_data_folder():
+def validate_data_folder() -> None:
     """Validates all JSON files in the data directory."""
     # 1. Initialize Schema Manager (consistent with agent.py)
     schema_manager = A2uiSchemaManager(
@@ -24,16 +25,16 @@ def validate_data_folder():
 
     data_dir = Path("data")
     if not data_dir.exists():
-        print(f"Error: Data directory '{data_dir}' not found.")
+        logger.error(f"Error: Data directory '{data_dir}' not found.")
         sys.exit(1)
 
     json_files = list(data_dir.glob("*.json"))
     if not json_files:
-        print(f"No JSON files found in '{data_dir}'.")
+        logger.info(f"No JSON files found in '{data_dir}'.")
         return
 
-    print(f"Validating {len(json_files)} files in '{data_dir}'...")
-    print("-" * 40)
+    logger.info(f"Validating {len(json_files)} files in '{data_dir}'...")
+    logger.info("-" * 40)
 
     all_passed = True
     for file_path in json_files:
@@ -43,24 +44,24 @@ def validate_data_folder():
 
             # Validate
             validator.validate(data)
-            print(f"✅ {file_path.name}: Valid")
+            logger.info(f"✅ {file_path.name}: Valid")
 
         except json.JSONDecodeError as e:
-            print(f"❌ {file_path.name}: Invalid JSON - {e}")
+            logger.error(f"❌ {file_path.name}: Invalid JSON - {e}")
             all_passed = False
         except ValueError as e:
-            print(f"❌ {file_path.name}: Validation Failed")
-            print(f"   Error: {e}")
+            logger.error(f"❌ {file_path.name}: Validation Failed")
+            logger.error(f"   Error: {e}")
             all_passed = False
-        except Exception as e:
-            print(f"❌ {file_path.name}: Unexpected Error - {e}")
+        except Exception:  # noqa: BLE001
+            logger.exception(f"❌ {file_path.name}: Unexpected Error")
             all_passed = False
 
-    print("-" * 40)
+    logger.info("-" * 40)
     if all_passed:
-        print("All files validated successfully! 🎉")
+        logger.info("All files validated successfully! 🎉")
     else:
-        print("Some files failed validation. Please check the errors above.")
+        logger.error("Some files failed validation. Please check the errors above.")
         sys.exit(1)
 
 

@@ -238,5 +238,169 @@
     {
         "id": "Parametric Weather Event Insurance",
         "description": "An innovative policy that pays out automatically based on objective weather data, such as a specific wind speed or rainfall amount. It eliminates the need for lengthy claims investigations and provides immediate liquidity after a catastrophic event. This is ideal for businesses like resorts or outdoor venues whose revenue is highly weather-dependent."
+    },
+    {
+        "id": "Nano-Satellite Orbital Liability",
+        "description": "Insurance for operators of CubeSats and other miniature satellites, covering physical damage during launch and orbital maneuvers. It includes high-limit liability for orbital collisions and de-orbiting accidents. This policy is crucial for the burgeoning private space industry and research institutions."
+    },
+    {
+        "id": "Urban Rooftop Agriculture Guard",
+        "description": "Protects commercial rooftop gardens and vertical farms from wind damage, system failures, and irrigation leaks. It covers the specific structural risks of high-altitude farming and provides liability for delivery and public workshops. This policy supports sustainable urban food systems."
+    },
+    {
+        "id": "Hydrogen Fuel Cell Infrastructure Shield",
+        "description": "Specialized coverage for hydrogen production facilities and refueling stations. It addresses the unique storage and volatility risks of hydrogen fuel and provides comprehensive environmental liability. This policy is essential for the transition to zero-emission heavy-duty transportation."
+    },
+    {
+        "id": "Deep-Sea Mining Operational Insurance",
+        "description": "Insurance for subsea mineral exploration and extraction, covering specialized ROVs and support vessels. It includes robust environmental damage protection and liability for disruption of submarine cables. This policy addresses the high-risk nature of the deep-ocean industrial frontier."
+    },
+    {
+        "id": "Synthetic Biology Product Liability",
+        "description": "Covers companies producing engineered proteins, biofuels, or synthetic fabrics. It protects against unforeseen biological interactions and provides defense for intellectual property disputes involving genetic sequences. This policy is a cornerstone for the bio-manufacturing revolution."
+    },
+    {
+        "id": "Smart City Sensor Network Protection",
+        "description": "Comprehensive insurance for municipal IoT deployments, covering thousands of distributed sensors against vandalism, weather, and cyber-interference. It includes liability for data-driven municipal decisions and protects the integrity of the urban digital infrastructure."
+    },
+    {
+        "id": "Offshore Wind Turbine Maintenance Guard",
+        "description": "Specialized coverage for the maintenance and repair of offshore wind arrays. It addresses the extreme maritime conditions and high costs of specialized vessel deployment. The policy includes business interruption coverage for downtime during major storm events."
+    },
+    {
+        "id": "E-Sports Professional Team & Event Shield",
+        "description": "Tailored for the competitive gaming industry, covering player health, event equipment, and streaming infrastructure. It includes liability for tournament organizers and protects against digital rights management disputes. This policy supports the rapidly growing global e-sports ecosystem."
+    },
+    {
+        "id": "Geothermal Power Plant Reservoir Risk",
+        "description": "Insurance for geothermal energy producers, covering the risk of reservoir depletion or seismic events induced by extraction. It includes physical damage to turbine systems and liability for local environmental impacts. This policy provides financial stability for baseload renewable energy."
+    },
+    {
+        "id": "Precision Forestry Drone & Yield Guard",
+        "description": "Protects managed timberlands using drone-based inventory and health monitoring. It covers losses from wildfires, pest outbreaks, and illegal logging, while insuring the high-tech equipment used for forest management. This policy supports sustainable timber production."
+    },
+    {
+        "id": "3D-Printed Infrastructure Construction Plus",
+        "description": "Insurance for construction firms utilizing large-scale additive manufacturing for homes and bridges. It covers the specific structural integrity risks of printed materials and provides specialized professional liability for robotic construction operators. This policy is at the forefront of building technology."
+    },
+    {
+        "id": "Rare Earth Element Supply Chain Shield",
+        "description": "Protects manufacturers against disruptions in the supply of critical minerals needed for electronics and magnets. It covers geopolitical risks, trade embargos, and transport delays. This policy is vital for national security and the high-tech manufacturing sector."
+    },
+    {
+        "id": "Hyperloop Operational & Passenger Safety",
+        "description": "Specialized insurance for high-speed vacuum tube transportation systems. It covers the extreme engineering risks of near-vacuum environments and provides high-limit passenger liability. This policy is essential for the deployment of next-generation rapid transit."
+    },
+    {
+        "id": "Vertical Take-Off & Landing (VTOL) Commuter Guard",
+        "description": "Insurance for the emerging urban air mobility market, covering electric air taxis and vertiport operations. It includes high-limit liability for dense urban flight paths and protects against software-driven flight control failures. This policy enables the future of city commuting."
+    },
+    {
+        "id": "Lab-Grown Meat Production & Contamination",
+        "description": "Covers cellular agriculture facilities producing cultured meat products. It protects against bioreactor contamination and provides specialized product liability for novel food ingredients. This policy supports the ethical and sustainable protein revolution."
+    },
+    {
+        "id": "Microgrid Resilience & Energy Storage Shield",
+        "description": "Insurance for localized energy systems and large-scale battery storage. It covers losses from battery fires, system failures, and grid isolation events. This policy is key to building energy resilience for communities and critical infrastructure."
+    },
+    {
+        "id": "Quantum Computing Data & Hardware Protection",
+        "description": "Specialized coverage for quantum processors and the sensitive data they process. It addresses the unique cooling requirements and fragility of quantum systems, while providing protection against the future risk of quantum-based decryption. This policy is for the leading edge of computation."
+    },
+    {
+        "id": "Direct Air Capture Carbon Credit Guard",
+        "description": "Insurance for facilities removing CO2 directly from the atmosphere. It covers the validity of carbon credits and protects against leaks in geological storage sites. This policy provides the financial foundation for the carbon removal industry."
+    },
+    {
+        "id": "Marine Plastic Recovery & Recycling Insurance",
+        "description": "Protects operations cleaning oceans and river systems of plastic waste. It covers specialized recovery vessels and the liability associated with processing and recycling ocean-bound materials. This policy supports global ocean health initiatives."
+    },
+    {
+        "id": "Tele-Medicine Global Malpractice & Data",
+        "description": "Comprehensive insurance for healthcare providers offering remote consultations across international borders. It addresses the complex jurisdictional legal risks and provides robust data privacy protection for sensitive patient records. This policy enables the expansion of global healthcare access."
+    },
+    {
+        "id": "Fusion Energy Research & Prototype Shield",
+        "description": "Insurance for laboratories and startups developing commercial fusion power. It covers the extreme magnetic and thermal risks of plasma containment and provides specialized liability for experimental energy systems. This policy supports the ultimate clean energy goal."
+    },
+    {
+        "id": "Space Debris Removal Service Liability",
+        "description": "Coverage for companies tasked with clearing defunct satellites and rocket stages from orbit. It covers the high-risk proximity maneuvers and potential for collateral damage to active orbital assets. This policy is essential for the long-term sustainability of space activities."
+    },
+    {
+        "id": "Biodiversity Offset & Restoration Guarantee",
+        "description": "Insurance for developers and conservationists engaged in biodiversity offsetting. It guarantees the long-term success of ecological restoration projects and protects against failure due to natural disasters or invasive species. This policy supports 'nature-positive' development."
+    },
+    {
+        "id": "Autonomous Maritime Shipping Operations Guard",
+        "description": "Specialized insurance for crewless cargo vessels navigating global trade routes. It covers the risks of sensor failure, cyber-piracy, and autonomous collision avoidance. This policy is at the forefront of the maritime digital revolution."
+    },
+    {
+        "id": "Solid-State Battery Manufacturing & Recourse",
+        "description": "Covers the production of next-generation solid-state batteries for EVs and electronics. It provides warranty recourse for performance failures and protects against specialized manufacturing defects. This policy supports the advancement of energy density and safety."
+    },
+    {
+        "id": "Personalized Genomics Privacy & Liability",
+        "description": "Insurance for companies providing direct-to-consumer genetic testing and personalized medicine. It covers the extreme privacy risks of genomic data and provides liability for interpretations that guide medical decisions. This policy is vital for the age of precision health."
+    },
+    {
+        "id": "Asteroid Mining Exploration & Mineral Rights",
+        "description": "Niche coverage for the early stages of space resource extraction. It covers the loss of exploration probes and provides specialized liability for the establishment of orbital mineral claims. This policy is for the pioneers of the celestial economy."
+    },
+    {
+        "id": "Floating City & Seasteading Property Shield",
+        "description": "Comprehensive insurance for permanent maritime residential and commercial structures. It addresses the unique risks of marine corrosion, wave action, and isolation from land-based services. This policy enables the expansion of human habitation onto the oceans."
+    },
+    {
+        "id": "Neuro-Interface Technology & Privacy Guard",
+        "description": "Covers companies developing brain-computer interfaces for medical and consumer use. It protects against the profound privacy risks of neural data and provide liability for device-related health complications. This policy is at the intersection of mind and machine."
+    },
+    {
+        "id": "Desalination Plant Infrastructure & Environmental",
+        "description": "Insurance for large-scale facilities providing fresh water from the sea. It covers the massive capital equipment against maritime perils and provides liability for the disposal of brine and other environmental impacts. This policy is critical for global water security."
+    },
+    {
+        "id": "Cryogenic Energy Storage & Logistics Shield",
+        "description": "Protects facilities using liquid air or other cryogens for long-duration energy storage. It addresses the risks of extreme cold and high pressure, while insuring the specialized transport needed for cryogenic fluids. This policy supports grid-scale storage solutions."
+    },
+    {
+        "id": "Vertical Cemetery & High-Density Memorial Guard",
+        "description": "Insurance for modern, space-efficient urban memorial structures. It covers the structural integrity of high-rise mausoleums and provides liability for public access and ceremony management. This policy addresses the changing needs of urban funerary services."
+    },
+    {
+        "id": "Subterranean Urban Infrastructure & Utility Plus",
+        "description": "Protects deep-underground tunnels and utility conduits in dense cities. It covers the risks of subsidence, flooding, and structural failure, while providing liability for surface-level disruptions during maintenance. This policy is essential for the 'hidden' city."
+    },
+    {
+        "id": "Atmospheric Water Generation Fleet Shield",
+        "description": "Insurance for companies operating mobile or stationary units that extract drinking water from the air. It covers the high-tech filtration systems and provides liability for water quality and distribution. This policy supports decentralized water access in arid regions."
+    },
+    {
+        "id": "Circular Economy Remanufacturing & Warranty",
+        "description": "Covers businesses that take back and refurbish industrial products for reuse. It provides warranty backup for remanufactured goods and protects against specialized liability in the 'product-as-a-service' model. This policy is a pillar of the circular economy."
+    },
+    {
+        "id": "Modular Nuclear Reactor (SMR) Operational Guard",
+        "description": "Specialized insurance for small, factory-built nuclear reactors. It addresses the unique safety and security profiles of SMRs and provides comprehensive liability for distributed nuclear power generation. This policy is key to the next generation of clean energy."
+    },
+    {
+        "id": "Exoskeleton Industrial & Medical Safety Shield",
+        "description": "Insurance for companies producing and deploying wearable robotic suits. It covers the specific injury risks of human-robotic interaction and provides liability for device failure in critical medical or industrial tasks. This policy supports the augmentation of human physical capability."
+    },
+    {
+        "id": "Waste-to-Energy Pyrolysis Facility Guard",
+        "description": "Comprehensive coverage for plants converting plastic and organic waste into fuel using high-temperature chemical processes. It addresses the complex chemical and thermal risks and provides liability for emissions and byproduct management. This policy supports advanced waste solutions."
+    },
+    {
+        "id": "Trans-Continental High-Speed Rail Operational",
+        "description": "Insurance for operators of long-distance, high-speed passenger rail lines. It covers the extreme speed risks and provides high-limit liability for multi-national transit corridors. This policy is essential for the integration of regional transportation networks."
+    },
+    {
+        "id": "Bio-Printing Organ & Tissue Liability",
+        "description": "Covers laboratories and medical facilities using 3D bio-printing for organ and tissue engineering. It protects against the profound medical and ethical risks of synthetic biology and provide liability for organ failure or rejection. This policy is for the future of regenerative medicine."
+    },
+    {
+        "id": "Arctic Research Station & Logistics Shield",
+        "description": "Specialized insurance for operations in the extreme environments of the far north. It covers the structural risks of permafrost melt and providing liability for complex ice-breaking and aerial supply logistics. This policy supports critical climate and environmental research."
     }
 ]

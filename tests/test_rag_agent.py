@@ -15,7 +15,7 @@ FULL_MATCH_SCORE = 100.0
 def test_mock_search_db_function_returns_results() -> None:
     """Test that the search function returns a list of MockSearchResult."""
     results = _mock_search_db_function(
-        extracted_query=MockExtractedQuery(query="vacation")
+        node_input=MockExtractedQuery(query="vacation")
     )
     assert isinstance(results, list)
     assert len(results) > 0
@@ -24,7 +24,7 @@ def test_mock_search_db_function_returns_results() -> None:
 
 def test_mock_search_db_function_empty_query() -> None:
     """Test that an empty query returns all results."""
-    results = _mock_search_db_function(extracted_query=MockExtractedQuery(query=""))
+    results = _mock_search_db_function(node_input=MockExtractedQuery(query=""))
     assert len(results) == len(_mock_db)
     assert all(res.score == pytest.approx(FULL_MATCH_SCORE) for res in results)
 
@@ -32,7 +32,7 @@ def test_mock_search_db_function_empty_query() -> None:
 def test_mock_search_db_function_threshold() -> None:
     """Test that the search function respects the threshold."""
     # We use a query that likely has many mid-score matches
-    results = _mock_search_db_function(extracted_query=MockExtractedQuery(query="policy"))
+    results = _mock_search_db_function(node_input=MockExtractedQuery(query="policy"))
     # If there are results above threshold, they should all be >= threshold
     # Given the mock data, "policy" should have matches.
     # Let's verify that IF we have results, they are either all above threshold
@@ -47,7 +47,7 @@ def test_mock_search_db_function_fallback() -> None:
     """Test that if no match is above threshold, all results are returned."""
     # Using a very unlikely string that should result in low scores
     results = _mock_search_db_function(
-        extracted_query=MockExtractedQuery(query="xyzabc123nonexistent")
+        node_input=MockExtractedQuery(query="%%%$$$###@@@!!!")
     )
     assert len(results) == len(_mock_db)
     # Check that they are still sorted
@@ -58,7 +58,7 @@ def test_mock_search_db_function_fallback() -> None:
 
 def test_mock_search_db_function_score_sorting() -> None:
     """Test that results are sorted by score (higher is better)."""
-    results = _mock_search_db_function(extracted_query=MockExtractedQuery(query="insurance"))
+    results = _mock_search_db_function(node_input=MockExtractedQuery(query="insurance"))
     if len(results) > 1:
         for i in range(len(results) - 1):
             assert results[i].score >= results[i + 1].score
@@ -66,7 +66,7 @@ def test_mock_search_db_function_score_sorting() -> None:
 
 def test_mock_search_db_function_content() -> None:
     """Test that results contain the expected fields."""
-    results = _mock_search_db_function(extracted_query=MockExtractedQuery(query="vacation"))
+    results = _mock_search_db_function(node_input=MockExtractedQuery(query="vacation"))
     if results:
         res = results[0]
         assert res.document_id is not None

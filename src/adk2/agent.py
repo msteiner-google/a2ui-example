@@ -8,7 +8,7 @@ from a2ui.schema.manager import A2uiSchemaManager
 from google.adk.agents import LlmAgent
 
 from adk2.shared import global_model
-from adk2.subagents.rag_agent import attach_a2ui_json_callback, rag_agent
+from adk2.subagents.rag_agent import rag_agent
 
 # Initialize A2UI Schema Manager
 schema_manager = A2uiSchemaManager(
