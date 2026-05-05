@@ -1,5 +1,24 @@
+.gcloudignore
+.git
+.gitignore
+
+# Node.js
+**/node_modules/
+**/dist/
+**/.angular/
+
+# Python
 **/.venv/
-**/.git/
 **/.adk/
-**/terraform/
+**/.ruff_cache/
+**/.pytest_cache/
 **/__pycache__/
+*.pyc
+
+# Terraform
+**/.terraform/
+**/terraform.tfstate*
+
+# Project specific
+# data/  <-- Keep this as it's needed by the agent
+renderer/

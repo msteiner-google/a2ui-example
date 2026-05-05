@@ -29,6 +29,35 @@ resource "google_project_service" "apis" {
   disable_on_destroy = false
 }
 
+data "google_project" "project" {
+  project_id = var.project_id
+}
+
+# Permissions for Cloud Build and Cloud Run (using default compute service account)
+resource "google_project_iam_member" "cloudbuild_storage" {
+  project = var.project_id
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
+
+resource "google_project_iam_member" "cloudbuild_logging" {
+  project = var.project_id
+  role    = "roles/logging.logWriter"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
+
+resource "google_project_iam_member" "cloudbuild_registry" {
+  project = var.project_id
+  role    = "roles/artifactregistry.writer"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
+
+resource "google_project_iam_member" "agent_vertex" {
+  project = var.project_id
+  role    = "roles/aiplatform.user"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
+
 # Artifact Registry to store the image
 resource "google_artifact_registry_repository" "agent_repo" {
   location      = var.region
@@ -51,7 +80,12 @@ resource "null_resource" "build_image" {
     command = "gcloud builds submit .. --config=../cloudbuild.yaml --substitutions=_IMAGE_NAME=${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agent_repo.repository_id}/adk2-agent:latest --project ${var.project_id} --quiet"
   }
 
-  depends_on = [google_artifact_registry_repository.agent_repo]
+  depends_on = [
+    google_artifact_registry_repository.agent_repo,
+    google_project_iam_member.cloudbuild_storage,
+    google_project_iam_member.cloudbuild_logging,
+    google_project_iam_member.cloudbuild_registry
+  ]
 }
 
 # Cloud Run service
@@ -97,10 +131,6 @@ resource "google_cloud_run_v2_service" "agent_service" {
   }
 
   depends_on = [null_resource.build_image]
-}
-
-data "google_project" "project" {
-  project_id = var.project_id
 }
 
 # Allow Gemini Enterprise invocation
