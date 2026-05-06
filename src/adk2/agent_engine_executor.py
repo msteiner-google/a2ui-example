@@ -1,10 +1,10 @@
-"""A2UI capable executor."""
+"""Agent Engine compatible executor."""
 
 import uuid
 from typing import TYPE_CHECKING, Any
 
 from a2a.server.agent_execution import AgentExecutor, RequestContext
-from a2a.server.tasks.task_updater import TaskUpdater
+from a2a.server.tasks import TaskUpdater
 from a2a.types import (
     AgentCard,
     DataPart,
@@ -14,9 +14,15 @@ from a2a.types import (
     TaskState,
     TextPart,
 )
+from a2a.utils import (
+    new_agent_parts_message,
+    new_task,
+)
 from a2a.utils.errors import InternalError
 from a2ui.a2a.extension import try_activate_a2ui_extension
 from a2ui.a2a.parts import parse_response_to_parts
+# from a2ui.core.schema.constants import VERSION_0_8
+VERSION_0_8 = "0.8"
 from google.adk.artifacts import InMemoryArtifactService
 from google.adk.memory.in_memory_memory_service import InMemoryMemoryService
 from google.adk.runners import Runner
@@ -30,8 +36,8 @@ if TYPE_CHECKING:
     from a2a.server.events import EventQueue
 
 
-class A2UIExampleAgentExecutor(AgentExecutor):
-    """Insurance Assistant AgentExecutor."""
+class AgentEngineExecutor(AgentExecutor):
+    """Insurance Assistant AgentExecutor for Agent Engine."""
 
     def __init__(self, agent_card: AgentCard | dict) -> None:
         """Init method."""
@@ -39,6 +45,7 @@ class A2UIExampleAgentExecutor(AgentExecutor):
             self._agent_card = AgentCard(**agent_card)
         else:
             self._agent_card = agent_card
+            
         self._runner = Runner(
             app_name="ui_demo_assistant_app",
             agent=root_agent,
@@ -47,7 +54,7 @@ class A2UIExampleAgentExecutor(AgentExecutor):
             memory_service=InMemoryMemoryService(),
         )
 
-    async def execute(  # noqa: C901, D102, PLR0912, PLR0914, PLR0915
+    async def execute(
         self,
         context: RequestContext,
         event_queue: EventQueue,
@@ -56,11 +63,13 @@ class A2UIExampleAgentExecutor(AgentExecutor):
         ui_event_part = None
         action = None
 
-        logger.info(
-            "--- Client requested extensions: {} ---", context.requested_extensions
-        )
-        active_ui_activation = try_activate_a2ui_extension(context, self._agent_card)
-        _active_ui_version = active_ui_activation[1] if active_ui_activation else None
+        logger.info("--- Client requested extensions: {} ---", context.requested_extensions)
+        
+        # Hardcoded for now as per user snippet to ensure UI flow
+        active_ui_version = VERSION_0_8
+        
+        if active_ui_version:
+            logger.info("--- AGENT_EXECUTOR: A2UI extension is active (v{}). ---", active_ui_version)
 
         if context.message and context.message.parts:
             for i, part in enumerate(context.message.parts):
@@ -98,10 +107,15 @@ class A2UIExampleAgentExecutor(AgentExecutor):
 
         logger.info("--- AGENT_EXECUTOR: Final query for LLM: '{}' ---", query)
 
-        task_id = context.task_id
-        context_id = context.context_id
+        task = context.current_task
+        if not task:
+            task = new_task(context.message)
+            await event_queue.enqueue_event(task)
 
-        session_id = context_id
+        updater = TaskUpdater(event_queue, task.id, task.context_id)
+        await updater.start_work()
+
+        session_id = task.context_id
         session = await self._runner.session_service.get_session(
             app_name="ui_demo_assistant_app",
             user_id="remote_agent",
@@ -135,49 +149,29 @@ class A2UIExampleAgentExecutor(AgentExecutor):
         final_response_content = "\n".join(all_model_contents)
 
         try:
-            # Use validator from schema manager
             validator = schema_manager.get_selected_catalog().validator
             final_parts = parse_response_to_parts(
                 final_response_content, validator=validator
             )
-            # If no parts were parsed (e.g. no tags found), fallback to text
             if not final_parts:
                 final_parts = [Part(root=TextPart(text=final_response_content))]
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.error("Error parsing or validating response to parts: {}", e)
             final_parts = [Part(root=TextPart(text=final_response_content))]
 
         self._log_parts(final_parts)
 
-        # Determine Task State
-        # Default to completed for simple chat turns to prevent indefinite polling.
-        final_state = TaskState.completed
-        # If we had a multi-step flow, we might set it to input_required here.
+        await updater.add_artifact(final_parts, name="response")
+        await updater.complete()
 
-        updater = TaskUpdater(event_queue, task_id, context_id)
-
-        await updater.update_status(
-            final_state,
-            Message(
-                message_id=str(uuid.uuid4()),
-                role=Role.agent,
-                context_id=context_id,
-                task_id=task_id,
-                parts=final_parts,
-            ),
-            final=(final_state == TaskState.completed),
-        )
-
-    async def cancel(  # noqa: PLR6301
+    async def cancel(
         self,
-        request: RequestContext,  # noqa: ARG002
-        event_queue: EventQueue,  # noqa: ARG002
-    ) -> Any:  # noqa: ANN401
-        """Cancel the requests."""
+        request: RequestContext,
+        event_queue: EventQueue,
+    ) -> Any:
         raise InternalError(message="Cancel not supported")
 
-    def _unwrap_value(self, val: Any) -> Any:  # noqa: ANN401, PLR6301
-        """Unwrap A2UI literal values."""
+    def _unwrap_value(self, val: Any) -> Any:
         if isinstance(val, dict):
             if "literalArray" in val:
                 return val["literalArray"]
@@ -189,7 +183,7 @@ class A2UIExampleAgentExecutor(AgentExecutor):
                 return val["literalBoolean"]
         return val
 
-    def _log_parts(self, parts: list[Part]) -> None:  # noqa: PLR6301
+    def _log_parts(self, parts: list[Part]) -> None:
         logger.info("--- PARTS TO BE SENT ---")
         for i, part in enumerate(parts):
             logger.info("Part {}: Type = {}", i, type(part.root))

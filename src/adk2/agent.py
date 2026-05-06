@@ -7,8 +7,8 @@ from a2ui.schema.common_modifiers import remove_strict_validation
 from a2ui.schema.manager import A2uiSchemaManager
 from google.adk.agents import LlmAgent
 
-from adk2.shared import global_model
-from adk2.subagents.rag_agent import rag_agent
+from .shared import global_model
+from .subagents.rag_agent import rag_agent
 
 # Initialize A2UI Schema Manager
 schema_manager = A2uiSchemaManager(

@@ -11,7 +11,7 @@ from a2a.server.tasks import InMemoryTaskStore
 from a2a.types import AgentCapabilities, AgentCard
 from loguru import logger
 
-from adk2.agent_executor import A2UIExampleAgentExecutor
+from .agent_executor import A2UIExampleAgentExecutor
 
 
 def serve() -> Never:

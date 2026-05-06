@@ -18,11 +18,13 @@ from google.genai.types import Content, GenerateContentConfig, Part
 from loguru import logger
 from rapidfuzz import fuzz, process
 
-from adk2.models.rag_model import MockExtractedQuery, MockSearchResult
-from adk2.shared import client_global, global_model
+from ..models.rag_model import MockExtractedQuery, MockSearchResult
+from ..shared import client_global, global_model
 
-# Initialize Jinja2 environment
-template_loader = jinja2.FileSystemLoader(searchpath="data")
+# Initialize Jinja2 environment relative to this package
+template_loader = jinja2.FileSystemLoader(
+    searchpath=Path(__file__).parent.parent / "data"
+)
 template_env = jinja2.Environment(loader=template_loader, autoescape=True)
 
 _MAX_RESULTS_WITHOUT_UI = 5
@@ -30,21 +32,15 @@ _MAX_RESULTS_WITHOUT_UI = 5
 
 def _load_mock_db() -> list[tuple[str, str]]:
     """Loads the mock database from a JSON file."""
-    # Look for the file in the project root's data folder.
-    possible_paths = [
-        Path("data/mock_policies.json"),
-        Path(__file__).resolve().parents[3] / "data" / "mock_policies.json",
-    ]
+    # Path relative to the adk2 package root
+    data_path = Path(__file__).parent.parent / "data" / "mock_policies.json"
 
-    for data_path in possible_paths:
-        if data_path.exists():
-            with data_path.open("r", encoding="utf-8") as f:
-                data = json.load(f)
-            return [(item["id"], item["description"]) for item in data]
+    if data_path.exists():
+        with data_path.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+        return [(item["id"], item["description"]) for item in data]
 
-    raise FileNotFoundError(  # noqa: TRY003
-        f"Could not find data/mock_policies.json in: {[str(p) for p in possible_paths]}"
-    )
+    raise FileNotFoundError(f"Could not find mock_policies.json at: {data_path}")
 
 
 _mock_db: list[tuple[str, str]] = _load_mock_db()
@@ -105,7 +101,7 @@ async def _extract_query_function(
         "Return ONLY a JSON object with a single 'query' key."
     )
     response = await client_global.aio.models.generate_content(
-        model="gemini-3-flash-preview",
+        model="gemini-2.5-flash",
         contents=[prompt],
         config=GenerateContentConfig(
             response_mime_type="application/json",
