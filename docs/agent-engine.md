@@ -58,11 +58,17 @@ To ensure compatibility with Agent Engine and proper UI rendering in Gemini Ente
 3.  **Bundling**: Simplified `extra_packages` to include the entire `adk2` directory. This ensures all sub-modules (`models`, `subagents`, `data`) are available in the remote environment.
 4.  **API Payload**: Corrected field names for the registration payload: `authorizationConfig` and `agentAuthorization`.
 
-## 4. Execution Workflow
+## 5. Detailed Executor Comparison
 
-To deploy, always run from the `src` directory to maintain consistent pathing for bundled packages:
+Understanding why the `AgentEngineExecutor` works where the previous one failed is key to mastering Agent Engine deployments.
 
-```bash
-cd src
-uv run python -m adk2.deploy
-```
+| Feature | Previous Executor (Legacy) | Agent Engine Executor (Working) | Why it matters |
+| :--- | :--- | :--- | :--- |
+| **Task Creation** | Assumed `task_id` was already present in context. | Checks `context.current_task`; if missing, creates one with `new_task()`. | Without a valid Task object, the system cannot track the request status or map it to a specific UI session. |
+| **Task Lifecycle** | Called `updater.update_status()` directly. | Calls `updater.start_work()` → `updater.add_artifact()` → `updater.complete()`. | `complete()` explicitly signals the frontend to stop polling. Direct status updates without a terminal state caused the "stuck" behavior. |
+| **Response Delivery** | Sent parts via `Message` object in status update. | Wraps response parts as an **artifact** named `"response"`. | Gemini Enterprise specifically looks for a `"response"` artifact to render the final message and its associated UI components. |
+| **Serialization** | Expected `AgentCard` type in `__init__`. | Handles `AgentCard | dict` in `__init__`. | Remote environments often deserialize Pydantic models as dictionaries. This prevents a `TypeError` during server-side startup. |
+| **UI Activation** | Relied on dynamic detection via `try_activate...`. | Hardcoded `VERSION_0_8` for reliability. | Ensures the A2UI extension is always reported as active, preventing the frontend from falling back to a "text-only" experience. |
+
+### Summary of the "Stuck Polling" Issue
+The primary reason the previous executor was "stuck" was that it never reached a definitive `terminal` state (like `COMPLETED` or `FAILED`) that the Gemini Enterprise frontend could recognize. By using the explicit `updater.complete()` method, we ensure the backend and frontend stay in sync, and the user receives the message as soon as processing is finished.
