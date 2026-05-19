@@ -11,11 +11,13 @@ import jinja2
 from google.adk.agents import LlmAgent
 from google.adk.agents.callback_context import CallbackContext  # noqa: TC002
 from google.adk.agents.context import Context  # noqa: TC002
+from google.adk.events import Event
 from google.adk.models import LlmRequest, LlmResponse
 from google.adk.tools import FunctionTool
 from google.adk.workflow import Workflow
 from google.genai.types import Content, GenerateContentConfig, Part
 from loguru import logger
+from pydantic import BaseModel
 from rapidfuzz import fuzz, process
 
 from adk2.models.rag_model import MockExtractedQuery, MockSearchResult
@@ -165,6 +167,52 @@ _workflow_tool = FunctionTool(
 )
 
 
+class TestData(BaseModel):
+    """Test data model for output schema templating."""
+
+    content: str
+
+
+def test_node(ctx: Context) -> Event:  # noqa: ARG001
+    """Node that returns both state and output data."""
+    return Event(
+        output=TestData(content="Data from Output Schema"),
+        state={"test_state_key": "Data from Session State"},
+    )
+
+
+test_agent = LlmAgent(
+    name="test_hybrid_agent",
+    model=global_model,
+    input_schema=TestData,
+    instruction=textwrap.dedent("""\
+        You are a test agent.
+        Verify that you can see both types of data:
+        1. From Schema: {TestData.content}
+        2. From State: {test_state_key}
+
+        Please summarize both pieces of information.
+    """),
+)
+
+test_hybrid_workflow = Workflow(
+    name="test_hybrid_workflow",
+    nodes=[test_node, test_agent],
+    edges=[
+        ("START", test_node),
+        (test_node, test_agent),
+    ],
+)
+
+
+async def run_test_hybrid_workflow(ctx: Context) -> str:
+    """Runs the test hybrid workflow."""
+    return await ctx.run_node(test_hybrid_workflow)
+
+
+test_tool = FunctionTool(func=run_test_hybrid_workflow)
+
+
 def before_model_callback(
     callback_context: CallbackContext, llm_request: LlmRequest
 ) -> LlmResponse | None:
@@ -209,7 +257,7 @@ rag_agent = LlmAgent(
         Can ask clarifying questions and show UI elements.
         """,
     ),
-    tools=[_workflow_tool],
+    tools=[_workflow_tool, test_tool],
     before_model_callback=before_model_callback,
     mode="chat",
 )
